@@ -1,6 +1,6 @@
 # Talent Finder
 
-This is a NodeJS API for finding the best talent match given a search 
+NodeJS API for finding the best talent match given a search 
 
 ## Getting Started
 
