@@ -68,17 +68,19 @@ module.exports = (api) => {
 
       const clonedCandidates = cloneDeep(candidates)
 
-      const skillMatchCount = clonedCandidates
-        .map((c) => {
-          c.found = 0
-          c.skills.forEach((s) => {
-            if (requestedSkills.includes(s)) c.found++
-          })
-          return c.found
+      const skillMatchCount = clonedCandidates.map((c) => {
+        c.found = 0
+        c.skills.forEach((s) => {
+          if (requestedSkills.includes(s)) {
+            c.found++
+          }
         })
-        .filter((c) => c > 0)
+        return c.found
+      })
 
-      if (isEmpty(skillMatchCount)) {
+      const filterMatches = skillMatchCount.filter((c) => c > 0)
+
+      if (isEmpty(filterMatches)) {
         return res.status(404).send('No candidates match the search criteria')
       }
 
